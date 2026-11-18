@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs><linearGradient id="sky" x2="1" y2="1"><stop stop-color="#0879c5"/><stop offset="1" stop-color="#0bb2be"/></linearGradient></defs>
+  <rect width="128" height="128" rx="28" fill="url(#sky)"/>
+  <circle cx="98" cy="28" r="13" fill="#ffdf8b"/>
+  <path d="M19 99c14-18 29-24 45-23 17 1 31 8 45 23v11H19z" fill="#075b77" opacity=".45"/>
+  <text x="62" y="82" text-anchor="middle" font-family="Noto Sans Thai, sans-serif" font-size="77" font-weight="700" fill="white">ก</text>
+  <path d="M20 107h88" stroke="#e9fbff" stroke-width="5" stroke-linecap="round"/>
+</svg>

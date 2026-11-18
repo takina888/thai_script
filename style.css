@@ -20,3 +20,42 @@
 .landscape-inset figcaption{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:8px 13px;color:#628498;font-size:11px}
 .landscape-inset figcaption strong{font-weight:800;color:#3b6e89}
 @media(max-width:720px){.scenic-hero{position:relative;top:auto;right:auto;opacity:1;width:100%;max-width:none;min-width:0;aspect-ratio:2.8;margin:22px 0 0;transform:none;border-width:3px;border-radius:14px}.scenic-hero-label{font-size:9px}.landscape-inset{margin-top:20px}.landscape-inset img{height:132px}}
+
+/* Reading controls: scale learning text without changing quiz logic or progress. */
+:root{--reader-scale:1}
+.brand-icon{width:44px;height:44px;border-radius:13px;flex:none;box-shadow:0 5px 13px #157dc433}
+.header-tools{display:flex;align-items:center;gap:9px;flex-wrap:wrap;justify-content:flex-end}
+.text-size-control{display:flex;align-items:center;gap:2px;border:1px solid #c6e3f2;background:white;border-radius:13px;padding:3px}
+.text-size-control button{width:37px;height:37px;border:0;background:#e8f6ff;border-radius:10px;color:#126da7;font-size:23px;font-weight:900;line-height:1}
+.text-size-label{font-size:12px;font-weight:800;color:#426c83;min-width:72px;text-align:center}
+.refresh-button{display:flex;gap:5px;align-items:center;justify-content:center;border:0;border-radius:13px;padding:11px 14px;min-height:43px;background:#1589bf;color:white;font-size:13px;font-weight:900}
+.refresh-button:hover,.text-size-control button:hover{filter:brightness(.96)}
+.headline p,.callout,.reference p{font-size:calc(14px * var(--reader-scale))}
+.letter-tile .reading,.word-card .meaning{font-size:calc(13px * var(--reader-scale))}
+.letter-tile .desc,.word-card .roman{font-size:calc(12px * var(--reader-scale))}
+.choice{font-size:calc(17px * var(--reader-scale))}
+.tabs .tab{font-size:calc(14px * var(--reader-scale))}
+.mini-legend,.landscape-inset figcaption,.week-group .week-label,.week-count,.guide-link{font-size:calc(12px * var(--reader-scale))}
+.pill,.word-card .roman,.stat,.section-label{font-size:calc(12px * var(--reader-scale))}
+@media(max-width:720px){
+  body{font-size:16px}
+  .masthead{align-items:flex-start;gap:10px}
+  .logo{gap:8px;min-width:0}
+  .brand-icon{width:40px;height:40px}
+  .logo-word{font-size:15px;line-height:1.35}
+  .logo small{font-size:9px;letter-spacing:.04em}
+  .header-tools{gap:4px;flex:none}
+  .text-size-control{padding:2px}
+  .text-size-control button{width:34px;height:38px}
+  .text-size-label{min-width:39px;width:39px;font-size:10px;line-height:1.2}
+  .refresh-button{width:41px;height:42px;padding:0;font-size:25px}
+  .refresh-button span{display:none}
+  .headline p,.callout,.reference p{font-size:calc(15px * var(--reader-scale))}
+  .letter-tile .reading,.word-card .meaning{font-size:calc(14px * var(--reader-scale))}
+  .letter-tile .desc,.word-card .roman{font-size:calc(12px * var(--reader-scale))}
+  .choice{font-size:calc(17px * var(--reader-scale))}
+  .tabs .tab{font-size:calc(14px * var(--reader-scale))}
+  .day-number{font-size:13px}
+  .week-group .week-label{font-size:calc(13px * var(--reader-scale))}
+}
+@media(max-width:380px){.masthead{flex-wrap:wrap}.header-tools{margin-left:auto}}

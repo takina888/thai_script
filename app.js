@@ -167,6 +167,10 @@
   const middle = new Set('ก จ ด ต บ ป อ ฎ ฏ'.split(' '));
   const high = new Set('ข ฃ ฉ ฐ ถ ผ ฝ ศ ษ ส ห'.split(' '));
   const STORAGE = 'thai-script-seven-v1';
+  const SIZE_STORAGE = 'thai-script-text-size-v1';
+  let textScale = (()=>{try{return Math.max(.9,Math.min(1.5,Number(localStorage.getItem(SIZE_STORAGE))||1));}catch(e){return 1;}})();
+  function applyTextSize(){document.documentElement.style.setProperty('--reader-scale',String(textScale));}
+  applyTextSize();
   let progress = loadProgress();
   let selectedDay = Math.max(1, Math.min(lessons.length, Number(progress.lastDay) || 1));
   let view = 'learn';
@@ -220,8 +224,8 @@
     root.innerHTML = `
       <div class="shell">
         <header class="masthead">
-          <a class="logo" href="#" data-action="home"><span class="logo-mark thai">ก</span><span><span class="logo-word">タイ文字 90日間チャレンジ</span><small>THAI SCRIPT IN 90 DAYS</small></span></a>
-          <span class="top-label">🌤️ 日本人のためのタイ文字入門</span>
+          <a class="logo" href="#" data-action="home"><img class="brand-icon" src="./app-icon.svg" alt="" width="44" height="44"><span><span class="logo-word">タイ文字 90日間チャレンジ</span><small>THAI SCRIPT IN 90 DAYS</small></span></a>
+          <div class="header-tools" aria-label="表示設定"><div class="text-size-control" aria-label="文字の大きさ"><button data-action="text-minus" aria-label="文字を小さくする" title="文字を小さくする">−</button><span class="text-size-label">文字 ${Math.round(textScale*100)}%</span><button data-action="text-plus" aria-label="文字を大きくする" title="文字を大きくする">＋</button></div><button class="refresh-button" data-action="refresh" title="ページを更新" aria-label="ページを更新">↻ <span>更新</span></button></div>
         </header>
         <section class="hero">
           <div class="hero-copy">
@@ -356,6 +360,12 @@
     const button=event.target.closest('button[data-action],a[data-action]');if(!button)return;
     const action=button.dataset.action;
     if(action==='home'){event.preventDefault();changeDay(1);window.scrollTo({top:0,behavior:'smooth'});}
+    if(action==='text-plus'||action==='text-minus'){
+      textScale=Math.max(.9,Math.min(1.5,Math.round((textScale+(action==='text-plus'?.1:-.1))*10)/10));
+      try{localStorage.setItem(SIZE_STORAGE,String(textScale));}catch(e){}
+      applyTextSize();document.querySelector('.text-size-label').textContent=`文字 ${Math.round(textScale*100)}%`;
+    }
+    if(action==='refresh')window.location.reload();
     if(action==='day')changeDay(Number(button.dataset.day));
     if(action==='guide'){const ref=document.getElementById('reference');ref.open=true;ref.scrollIntoView({behavior:'smooth',block:'start'});}
     if(action==='learn'){view='learn';render();scrollToPanel();}
